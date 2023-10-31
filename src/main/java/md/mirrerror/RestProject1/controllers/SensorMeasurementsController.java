@@ -51,11 +51,7 @@ public class SensorMeasurementsController {
             throw new SensorMeasurementNotCreatedException(errorMessage.toString());
         }
 
-        SensorMeasurement sensorMeasurement = convertToSensorMeasurement(sensorMeasurementDTO);
-
-        System.out.println(sensorMeasurement);
-
-        sensorMeasurementsService.save(sensorMeasurement);
+        sensorMeasurementsService.save(convertToSensorMeasurement(sensorMeasurementDTO));
 
         return ResponseEntity.ok(HttpStatus.OK);
     }

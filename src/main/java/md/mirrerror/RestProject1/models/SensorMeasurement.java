@@ -27,7 +27,7 @@ public class SensorMeasurement {
     private Boolean raining;
 
     @NotNull(message = "Sensor shouldn't be null")
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "sensor_id", referencedColumnName = "id")
     private Sensor sensor;
 
