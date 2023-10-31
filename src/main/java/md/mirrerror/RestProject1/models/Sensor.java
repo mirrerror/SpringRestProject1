@@ -3,6 +3,7 @@ package md.mirrerror.RestProject1.models;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
+import org.hibernate.annotations.Cascade;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +22,7 @@ public class Sensor {
     @Column(name = "name")
     private String name;
 
-    @OneToMany(mappedBy = "provider")
+    @OneToMany(mappedBy = "sensor")
     private List<SensorMeasurement> measurements;
 
     public Sensor(String name) {

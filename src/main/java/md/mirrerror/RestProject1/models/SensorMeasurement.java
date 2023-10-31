@@ -27,17 +27,17 @@ public class SensorMeasurement {
     private Boolean raining;
 
     @NotNull(message = "Sensor shouldn't be null")
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "sensor_id", referencedColumnName = "id")
-    private Sensor provider;
+    private Sensor sensor;
 
     @Column(name = "created_at")
     private LocalDateTime createdAt;
 
-    public SensorMeasurement(double value, boolean raining, Sensor provider) {
+    public SensorMeasurement(double value, boolean raining, Sensor sensor) {
         this.value = value;
         this.raining = raining;
-        this.provider = provider;
+        this.sensor = sensor;
     }
 
     public SensorMeasurement() {}
@@ -66,12 +66,12 @@ public class SensorMeasurement {
         this.raining = raining;
     }
 
-    public Sensor getProvider() {
-        return provider;
+    public Sensor getSensor() {
+        return sensor;
     }
 
-    public void setProvider(Sensor provider) {
-        this.provider = provider;
+    public void setSensor(Sensor provider) {
+        this.sensor = provider;
     }
 
     public LocalDateTime getCreatedAt() {
@@ -88,7 +88,7 @@ public class SensorMeasurement {
                 "id=" + id +
                 ", value=" + value +
                 ", raining=" + raining +
-                ", provider=" + provider +
+                ", sensor=" + sensor +
                 ", createdAt=" + createdAt +
                 '}';
     }
