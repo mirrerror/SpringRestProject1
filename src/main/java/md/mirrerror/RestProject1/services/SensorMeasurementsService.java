@@ -14,10 +14,12 @@ import java.util.List;
 public class SensorMeasurementsService {
 
     private final SensorMeasurementsRepository sensorMeasurementsRepository;
+    private final SensorsService sensorsService;
 
     @Autowired
-    public SensorMeasurementsService(SensorMeasurementsRepository sensorMeasurementsRepository) {
+    public SensorMeasurementsService(SensorMeasurementsRepository sensorMeasurementsRepository, SensorsService sensorsService) {
         this.sensorMeasurementsRepository = sensorMeasurementsRepository;
+        this.sensorsService = sensorsService;
     }
 
     public List<SensorMeasurement> findAll() {
@@ -31,6 +33,8 @@ public class SensorMeasurementsService {
     }
 
     private void enrichSensorMeasurement(SensorMeasurement sensorMeasurement) {
+        // мы должны сами найти сенсор из БД по имени и вставить объект из Hibernate persistence context'а
+        sensorMeasurement.setSensor(sensorsService.findByName(sensorMeasurement.getSensor().getName()));
         sensorMeasurement.setCreatedAt(LocalDateTime.now());
     }
 
